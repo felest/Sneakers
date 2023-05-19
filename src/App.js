@@ -1,4 +1,8 @@
 import Card from "./Components/Card";
+import Drawer from "./Components/Drawer";
+import React from 'react';
+
+
 
 const sneakersArr = [
   {
@@ -20,6 +24,16 @@ const sneakersArr = [
 ];
 
 function App() {
+
+  React.useEffect(() => {
+    console.log(11)
+  }, []);
+
+  const [isVisible, setIsVisible] = React.useState(true); //отслеживаем состояние корзины
+
+  const [drawerItems, setDrawerItems] = React.useState([]);
+
+
   return (
     <div className="wrapper">
       <header>
@@ -31,7 +45,7 @@ function App() {
           </div>
         </div>
         <ul>
-          <li>
+          <li className="cursor" onClick={() => setIsVisible(!isVisible)}>
             <img width={18} height={18} src="/img/cart.png" />
             <span>1205 руб.</span>
           </li>
@@ -44,53 +58,9 @@ function App() {
           </li>
         </ul>
       </header>
+
+      <Drawer drawerItems={drawerItems} isVisible={isVisible} setIsVisible={setIsVisible} />
      
-
-
-
-    <div style = {{display: "none"}}  className="overlay">
-      <div className="drawer">
-        <h2>
-          Корзина <img className="cu-p" src="./img/btn-remove.png" alt="Remove" />
-        </h2>
-
-        <div className="items">
-          <div className="cartItem">
-            <div
-              style={{ backgroundImage: 'url(/img/sneakers/1.png)' }}
-              className="cartItemImg"></div>
-
-            <div className="cartText">
-              <p>Мужские Кроссовки Nike Air Max 270</p>
-              <b>12 999 руб.</b>
-            </div>
-            <img className="removeBtn" src="/img/btn-remove.png" alt="Remove" />
-          </div>
-
-        </div>
-
-        <div className="cartTotalBlock">
-          <ul>
-            <li>
-              <span>Итого:</span>
-              <div></div>
-              <b>21 498 руб. </b>
-            </li>
-            <li>
-              <span>Налог 5%:</span>
-              <div></div>
-              <b>1074 руб. </b>
-            </li>
-          </ul>
-          <button className="greenButton">
-            Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
-          </button>
-        </div>
-      </div>
-    </div>
-
-
-
       <div className="content">
             <h1>Все кроссовки</h1>
             <div className="search-block">
@@ -100,7 +70,7 @@ function App() {
           
         <div className="ds-f">
            {sneakersArr.map((elem, index) => <Card pTitle={elem.title} pPrice={elem.price} 
-           pUrl={elem.imageUrl} key={index}/>) }
+           pUrl={elem.imageUrl} pDrawerItems={drawerItems} pSetDrawerItems={setDrawerItems} key={index}/>) }
         </div>
       </div>
     </div>

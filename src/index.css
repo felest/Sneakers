@@ -242,7 +242,9 @@ li {
 
 }
 
-
+.cursor{
+  cursor: pointer;
+}
 
 
 .greenButton {
