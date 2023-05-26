@@ -1,4 +1,15 @@
+import React from 'react';
+
 function Drawer(props){
+
+  const [isOrdered, setIsOrdered] = React.useState(false);
+
+  function makeOrder(drawerItems){
+    props.setOrderItems([...props.orderItems, drawerItems]); //данные об оформленном заказе(массив из заказанных кроссовок)
+    props.setDrawerItems([]); //обнуляем массив корзины
+    setIsOrdered(!isOrdered);
+  }
+
     return(
         <div style={props.isVisible ? {display: 'block'} : {display: 'none'}} className="overlay">
         <div className="drawer">
@@ -7,20 +18,25 @@ function Drawer(props){
             className="cu-p cursor" src="./img/btn-remove.png" alt="Remove" />
           </h2>
   
+          {isOrdered && <div style={{position: 'absolute',
+                                      top: '330px', right: '100px'}}>
+            <img src="img/complete-order.jpg" alt="заказ оформлен" />
+            <h2>Заказ оформлен</h2>
+            </div>}
+
           <div className="items">{
             props.drawerItems.map((obj, index) => 
               <div key={index} className="cartItem">
               <div
-                style={{ backgroundImage: `url(${obj.pUrl})` }}
+                style={{ backgroundImage: `url(${obj.imageUrl})` }}
                 className="cartItemImg"></div>
   
               <div className="cartText">
-                <p>{obj.pTitle}</p>
-                <b>{obj.pPrice} руб.</b>
+                <p>{obj.title}</p>
+                <b>{obj.price} руб.</b>
               </div>
               <img className="removeBtn" src="/img/btn-remove.png" alt="Remove" />
             </div>
-
             )
           }
             
@@ -39,7 +55,7 @@ function Drawer(props){
                 <b>1074 руб. </b>
               </li>
             </ul>
-            <button className="greenButton">
+            <button  className="greenButton" onClick={() => makeOrder(props.drawerItems)}>
               Оформить заказ <img src="/img/arrow.png" alt="Arrow" />
             </button>
           </div>

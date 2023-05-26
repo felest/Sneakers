@@ -2,41 +2,41 @@
 
 import React from 'react';
 
-function Card({pTitle, pPrice, pUrl, pDrawerItems, pSetDrawerItems}){
+function Card({title, price, imageUrl, drawerItems, setDrawerItems}){
 
     const [itemsCount, setItemsCount] = React.useState(0);
 
     function onAddToCart(){
         //setIsAdded(!isAdded);
-        // if(pDrawerItems.indexOf({pTitle, pPrice, pUrl}) != -1){
-        //     pDrawerItems.filter((elem) => elem !== {pTitle, pPrice, pUrl})
+        // if(drawerItems.indexOf({title, price, imageUrl}) != -1){
+        //     drawerItems.filter((elem) => elem !== {title, price, imageUrl})
         // }
-        pSetDrawerItems([...pDrawerItems, {pUrl, pPrice, pTitle}]);
+        setDrawerItems([...drawerItems, {imageUrl, price, title}]);
         setItemsCount(itemsCount + 1);
     }
 
     function deleteItems(){
         setItemsCount(0);
-        pSetDrawerItems(pDrawerItems.filter((obj) => pTitle !== obj.pTitle));
+        setDrawerItems(drawerItems.filter((obj) => title !== obj.title));
     }
 
     return (
         <div className="card">
         <div>
-            <img src='/img/unliked.png' width={32} height={32} alt="Unliked" />
+            <img src='/img/heart.png' width={32} height={32} alt="Unliked" />
         </div>
-        <img width={133} height={112} src={pUrl} alt="Sneakers" />
-        <h5>{pTitle}</h5>
+        <img width={133} height={112} src={imageUrl} alt="Sneakers" />
+        <h5>{title}</h5>
         <div className="cardChildDiv">
             <div className="container">
                 <span>ЦЕНА:</span>
-                <b>{pPrice}</b>
+                <b>{price}</b>
             </div>
             {/* <button className="button"> */}
               <img className = "button" onClick = {() => onAddToCart()} width={32} height={32} 
               src={itemsCount!==0 ? "/img/btn-checked.svg" : "/img/plus.png"} alt="Plus" />
 
-              {itemsCount && <img className="button" onClick = {() => deleteItems(pTitle)} width={31} height={31} 
+              {itemsCount && <img className="button" onClick = {() => deleteItems(title)} width={31} height={31} 
               src={"/img/cross.png"} alt="Del" />}
             {/* </button> */}
         </div>

@@ -246,6 +246,10 @@ li {
   cursor: pointer;
 }
 
+.link{
+  color: black;
+  text-decoration-line: none;
+}
 
 .greenButton {
     position: relative;
