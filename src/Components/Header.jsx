@@ -1,6 +1,18 @@
 import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 
 function Header({isVisible, setIsVisible}){
+
+  const dispatch = useDispatch(); //создали диспетчера, который будет далее работать
+
+  const addCash = () => {
+    dispatch({type: "ADD_CASH", payload: 1})
+  }
+
+const cash = useSelector(state => state.cash); //вытаскиваем из store значение cash
+//useSelector - для обращения к state, чтобы вытащить из него какое-либо значение
+//console.log(cash);
+
     return(
     <header>
         
@@ -16,7 +28,7 @@ function Header({isVisible, setIsVisible}){
         <ul>
           <li className="cursor" onClick={() => setIsVisible(!isVisible)}>
             <img width={18} height={18} src="/img/cart.png" />
-            <span>1205 руб.</span>
+            <span>{cash} руб.</span>
           </li>
           <li>
             <img width={18} height={18} src="/img/fav.png" />

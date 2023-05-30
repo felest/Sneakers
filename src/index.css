@@ -155,8 +155,21 @@ li {
 }
 
 
+.crossImage{
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top:25%;
+  left:140px;
+  opacity: 0.5;
+  cursor: pointer;
+}
 
-
+.crossImage:hover{
+  background-color:#dfdfdf;
+  opacity: 1;
+}
 
 .search-block {
   border: 1px solid #f3f3f3;
@@ -176,12 +189,13 @@ li {
   outline:none;
 }
 
-.search-block img{
+.search-block .searchImage{
   width: 18px;
   height: 18px;
   position: absolute;
   top:30%;
   left:3px;
+  cursor: pointer;
 }
 
 
@@ -332,4 +346,8 @@ li {
 
 .cartText p{
   margin-bottom: 5px;
+}
+
+.display-none{
+  display: none;
 }

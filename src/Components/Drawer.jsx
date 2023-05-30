@@ -1,6 +1,9 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 
 function Drawer(props){
+
+  const cash = useSelector(state => state.cash);
 
   const [isOrdered, setIsOrdered] = React.useState(false);
 
@@ -47,12 +50,12 @@ function Drawer(props){
               <li>
                 <span>Итого:</span>
                 <div></div>
-                <b>21 498 руб. </b>
+                <b>{cash} руб. </b>
               </li>
               <li>
                 <span>Налог 5%:</span>
                 <div></div>
-                <b>1074 руб. </b>
+                <b>{cash} руб. </b>
               </li>
             </ul>
             <button  className="greenButton" onClick={() => makeOrder(props.drawerItems)}>
