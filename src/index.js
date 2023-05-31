@@ -8,7 +8,8 @@ import {createStore} from 'redux';
 
 const defaultState = { //состояние по умолчанию
     cash: 0,
-    inputValue: ""
+    inputValue: "",
+    favItems: []
 }
 
 function reducer(state=defaultState, action){
@@ -21,6 +22,10 @@ function reducer(state=defaultState, action){
             return{...state, inputValue: state.inputValue = action.payload}
         case "CLEAR_INPUT":
             return{...state, inputValue: ""}
+        case "ADD_FAV":
+            return{...state, favItems: [...state.favItems, action.payload]}
+        case "REMOVE_FROM_FAV":
+            return{...state, favItems: []}
         default:
             return state;
     }

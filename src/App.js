@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 import Orders from './Pages/Orders';
 import Drawer from './Components/Drawer';
 import Form from './Pages/Form';
+import NotFound from './Pages/NotFound';
+import Favourites from './Pages/Favourites';
 
 const sneakersArr = [
   {
@@ -37,13 +39,14 @@ function App() {
   const [orderItems, setOrderItems] = React.useState([]);
 
 
+
   return (
    
     <div className="wrapper">
       <Routes>
         <Route path="/" element={<Home orderItems={orderItems} setOrderItems={setOrderItems} 
           drawerItems={drawerItems} setDrawerItems={setDrawerItems} isVisible={isVisible} 
-          setIsVisible={setIsVisible} sneakersArr={sneakersArr}/>}>
+          setIsVisible={setIsVisible} sneakersArr={sneakersArr} />}>
         </Route>
 
         <Route path="/orders" element={<Orders isVisible={isVisible} setIsVisible={setIsVisible} 
@@ -51,6 +54,12 @@ function App() {
         </Route>
 
         <Route path="/form" element={<Form />}>
+        </Route>
+
+        <Route path="*" element={<NotFound />}>
+        </Route>
+
+        <Route path="/favourites" element={<Favourites isVisible={isVisible} setIsVisible={setIsVisible} />}>
         </Route>
       </Routes>
       

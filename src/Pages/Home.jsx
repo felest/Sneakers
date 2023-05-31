@@ -34,7 +34,7 @@ function Home({drawerItems, setDrawerItems, orderItems, setOrderItems, isVisible
            {sneakersArr.filter((elem) => elem.title.toLowerCase().includes(inputValue.toLowerCase())).map((elem, index) => <Card title={elem.title} price={elem.price} 
            imageUrl={elem.imageUrl} drawerItems={drawerItems} setDrawerItems={setDrawerItems} key={index}/>) }
         </div>
-        </div>
+      </div>
     </>
     
 
